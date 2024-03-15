@@ -4,16 +4,16 @@ on:
   push:
     branches:
       - main  # Or specify your main branch here
-env:
-  DOCKER_REGISTRY_PASSWORD: ${{ secrets.DOCKERHUB_TOKEN  }}
-  DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+# env: dev
+#   # DOCKER_REGISTRY_PASSWORD: ${{ secrets.DOCKERHUB_TOKEN  }}
+#   # DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
   
       
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
+    environment: dev
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
@@ -37,7 +37,7 @@ jobs:
   deploy:
     needs: build
     runs-on: ubuntu-latest
-
+    environment: dev
     steps:
     - name: Checkout code
       uses: actions/checkout@v1
