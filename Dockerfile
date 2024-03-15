@@ -8,7 +8,7 @@ RUN dotnet restore  ./App/App.csproj
 
 # Copy everything else and build the application
 COPY ./App/* ./
-RUN dotnet publish -c Release -o out
+RUN dotnet publish ./App/App.csproj -c Release -o out
 
 # Build runtime image
 FROM mcr.microsoft.com/dotnet/runtime:8.0 AS runtime
