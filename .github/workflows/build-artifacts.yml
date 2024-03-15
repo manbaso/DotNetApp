@@ -31,7 +31,7 @@ jobs:
     - name: Save DLL as Artifact
       uses: actions/upload-artifact@v2
       with:
-        name: App-${{ github.sha | slice: 0, 7 }}
+        name: App-${{ steps.slug.outputs.sha7 }}
         path: '**/*.dll'
 
   deploy:
