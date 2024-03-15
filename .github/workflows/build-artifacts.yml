@@ -70,10 +70,18 @@ jobs:
       # ecr: # optional, default is auto
       # # Log out from the Docker registry at the end of a job
       # logout: # optional, default is true
+    - name: Set short git commit SHA
+      id: vars
+      run: |
+        calculatedSha=$(git rev-parse --short ${{ github.sha }})
+        echo "COMMIT_SHORT_SHA=$calculatedSha" >> $GITHUB_ENV
+    
+    - name: Confirm git commit SHA output
+      run: echo ${{ env.COMMIT_SHORT_SHA }}  
           
 
     - name: Build Docker image
-      run: docker build -t ayeondocker/app:latest .
+      run: docker build -t ayeondocker/app:${{ env.COMMIT_SHORT_SHA }} .
 
     - name: Push Docker image to Docker Hub
-      run: docker push ayeondocker/app:latest
+      run: docker push ayeondocker/app:${{ env.COMMIT_SHORT_SHA }}
