@@ -64,7 +64,7 @@ jobs:
           
 
     - name: Build Docker image
-      run: docker build -t ayeondocker/app:tagname .
+      run: docker build -t ayeondocker/app:latest .
 
     - name: Push Docker image to Docker Hub
-      run: docker push ayeondocker/app:tagname
+      run: docker push ayeondocker/app:latest
