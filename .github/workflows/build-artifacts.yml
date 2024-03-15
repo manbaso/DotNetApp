@@ -20,8 +20,8 @@ jobs:
 
     - name: Build and Test
       run: |
-        dotnet build ../App/App.csproj
-        dotnet test ../App/App.csproj
+        dotnet build ./App/App.csproj
+        dotnet test ./App/App.csproj
 
     - name: Save DLL as Artifact
       uses: actions/upload-artifact@v2
