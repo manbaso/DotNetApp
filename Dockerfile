@@ -3,11 +3,11 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /app
 
 # Copy csproj and restore as distinct layers
-COPY *.csproj ./
+COPY ./App/App.csproj ./
 RUN dotnet restore
 
 # Copy everything else and build the application
-COPY . ./
+COPY ./App/* ./
 RUN dotnet publish -c Release -o out
 
 # Build runtime image
