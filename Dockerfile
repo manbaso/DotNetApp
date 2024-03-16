@@ -15,5 +15,9 @@ FROM mcr.microsoft.com/dotnet/runtime:8.0 AS runtime
 WORKDIR /app
 COPY --from=build /app/out ./
 
+EXPOSE 8080
+
+EXPOSE 80
+
 # Set the entry point for the application
 ENTRYPOINT ["dotnet", "App.dll"]
