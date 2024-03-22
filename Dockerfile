@@ -1,6 +1,9 @@
 # Use the .NET SDK image to build the application
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /app
+EXPOSE 8080
+
+EXPOSE 8081
 
 # Copy csproj and restore as distinct layers
 COPY ./App ./App
@@ -11,13 +14,11 @@ COPY ./App/* ./
 RUN dotnet publish ./App/App.csproj -c Release -o out
 
 # Build runtime image
-FROM mcr.microsoft.com/dotnet/runtime:8.0 AS runtime
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
 WORKDIR /app
 COPY --from=build /app/out ./
 
-EXPOSE 8080
 
-EXPOSE 80
 
 # Set the entry point for the application
 ENTRYPOINT ["dotnet", "App.dll"]
