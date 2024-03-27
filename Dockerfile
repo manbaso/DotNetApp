@@ -13,7 +13,7 @@ RUN dotnet restore  ./App/App.csproj
 COPY ./App/* ./
 RUN dotnet publish ./App/App.csproj -c Release -o out
 
-# Build runtime image
+# Build ASP image
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
 WORKDIR /app
 COPY --from=build /app/out ./
